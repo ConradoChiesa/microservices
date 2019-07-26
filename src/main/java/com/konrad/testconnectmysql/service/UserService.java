@@ -1,7 +1,9 @@
-package com.konrad.testconnectmysql;
+package com.konrad.testconnectmysql.service;
+
+import com.konrad.testconnectmysql.entitie.User;
 
 public class UserService {
     public User getById(){
-        return new User(1L, "John", "Doe", "+57 311 222 3344", "john@sinbugs.com");
+        return null;
     }
 }

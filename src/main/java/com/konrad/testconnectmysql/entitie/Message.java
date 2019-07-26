@@ -1,4 +1,4 @@
-package com.konrad.testconnectmysql;
+package com.konrad.testconnectmysql.entitie;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
