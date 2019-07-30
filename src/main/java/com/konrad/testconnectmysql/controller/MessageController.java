@@ -14,12 +14,15 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping(path = "/send")
+    @ResponseBody
     public MessageResponse addNewMessage(
             @RequestParam String title,
             @RequestParam String body) {
         Message message = messageService.addNewMessage(title, body);
         return new MessageResponse(message);
     }
+
+
 //
 //    @GetMapping(path = "/all")
 //    public MessageResponse getMessages(@RequestParam Integer id) {
