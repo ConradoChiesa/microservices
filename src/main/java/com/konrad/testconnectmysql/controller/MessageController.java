@@ -1,5 +1,6 @@
 package com.konrad.testconnectmysql.controller;
 
+import com.konrad.testconnectmysql.repository.MessageRepository;
 import com.konrad.testconnectmysql.entitie.Message;
 import com.konrad.testconnectmysql.controller.response.MessageResponse;
 import com.konrad.testconnectmysql.service.MessageService;
@@ -13,6 +14,9 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
     @GetMapping(path = "/send")
     @ResponseBody
     public MessageResponse addNewMessage(
@@ -22,12 +26,7 @@ public class MessageController {
         return new MessageResponse(message);
     }
 
-
-//
-//    @GetMapping(path = "/all")
-//    public MessageResponse getMessages(@RequestParam Integer id) {
-//
-//        return new MessageResponse(messages);
-//    }
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Message> getAllMessage() { return messageRepository.findAll(); }
 
 }
