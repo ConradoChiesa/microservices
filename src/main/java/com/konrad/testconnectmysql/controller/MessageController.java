@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/message")
 public class MessageController {
 
     @Autowired
@@ -17,7 +16,7 @@ public class MessageController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @GetMapping(path = "/send")
+    @PostMapping(path = "/message")
     @ResponseBody
     public MessageResponse addNewMessage(
             @RequestParam String title,
@@ -26,7 +25,7 @@ public class MessageController {
         return new MessageResponse(message);
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/message")
     public @ResponseBody Iterable<Message> getAllMessage() { return messageRepository.findAll(); }
 
 }
