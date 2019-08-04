@@ -15,6 +15,26 @@ public class Message {
 
     private String body;
 
+    private String str;
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    private String end;
+
     public Integer getId() {
         return id;
     }
