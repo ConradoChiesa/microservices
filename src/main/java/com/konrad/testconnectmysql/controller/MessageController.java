@@ -1,5 +1,6 @@
 package com.konrad.testconnectmysql.controller;
 
+import com.konrad.testconnectmysql.entitie.User;
 import com.konrad.testconnectmysql.repository.MessageRepository;
 import com.konrad.testconnectmysql.entitie.Message;
 import com.konrad.testconnectmysql.controller.response.MessageResponse;
@@ -20,8 +21,9 @@ public class MessageController {
     @ResponseBody
     public MessageResponse addNewMessage(
             @RequestParam String title,
-            @RequestParam String body) {
-        Message message = messageService.addNewMessage(title, body);
+            @RequestParam String body,
+            @RequestParam User user) {
+        Message message = messageService.addNewMessage(title, body, user);
         return new MessageResponse(message);
     }
 

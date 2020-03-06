@@ -10,30 +10,9 @@ public class Message {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-
     private String title;
-
     private String body;
-
-    private String str;
-
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
-        this.str = str;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    private String end;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -59,4 +38,7 @@ public class Message {
         this.body = body;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
