@@ -1,31 +1,37 @@
 package com.konrad.testconnectmysql.service;
 
+import com.konrad.testconnectmysql.controller.response.MessageResponse;
 import com.konrad.testconnectmysql.entitie.Message;
-import com.konrad.testconnectmysql.entitie.User;
 import com.konrad.testconnectmysql.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.persistence.Id;
+import java.util.Optional;
+
 @Service
 public class MessageService {
-
 
     @Autowired
     private MessageRepository messageRepository;
 
-    public Message addNewMessage (String title, String body, User user) {
-
+    public Message addNewMessage (Message message) {
         Message m = new Message();
-        m.setTitle(title);
-        m.setBody(body);
-        m.setUser(user);
+        m.setTitle(message.getTitle());
+        m.setBody(message.getBody());
         return messageRepository.save(m);
-
     }
 
-    public @ResponseBody Iterable<Message> getAllMessages() {
+    public Iterable<Message> getAllMessages() {
         return messageRepository.findAll();
     }
 
+    public MessageResponse getMessageById(Integer id) {
+        MessageResponse mr = new MessageResponse();
+        Optional<Message> o = messageRepository.findById(id);
+        mr.setTitle(o.get().getTitle());
+        mr.setMessage(o.get().getBody());
+        //return messageRepository.findById(id);
+        return mr;
+    }
 }

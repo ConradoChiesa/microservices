@@ -1,30 +1,25 @@
 package com.konrad.testconnectmysql.controller;
 
+import com.konrad.testconnectmysql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.konrad.testconnectmysql.entitie.User;
 import com.konrad.testconnectmysql.repository.UserRepository;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path="/demo")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @GetMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestParam String name,
-                                            @RequestParam String lastName,
-                                            @RequestParam String email) {
-
-        User n = new User();
-        n.setFirstName(name);
-        n.setLastName(lastName);
-        n.setEmail(email);
-        userRepository.save(n);
-        return "Saved";
+    @PostMapping(path="/add")
+    public void addNewUser (@Valid @RequestBody User user) {
+        userService.addNewUser(user);
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<User> getAllUsers() { return userRepository.findAll(); }
+    public @ResponseBody Iterable<User> getAllUsers() { return userService.findAll(); }
 }
