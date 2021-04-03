@@ -1,12 +1,11 @@
 package com.konrad.testconnectmysql.service;
 
-import com.konrad.testconnectmysql.controller.response.MessageResponse;
+import com.konrad.testconnectmysql.response.MessageResponse;
 import com.konrad.testconnectmysql.entitie.Message;
 import com.konrad.testconnectmysql.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.Optional;
 
 @Service
@@ -29,9 +28,10 @@ public class MessageService {
     public MessageResponse getMessageById(Integer id) {
         MessageResponse mr = new MessageResponse();
         Optional<Message> o = messageRepository.findById(id);
-        mr.setTitle(o.get().getTitle());
-        mr.setMessage(o.get().getBody());
-        //return messageRepository.findById(id);
+        if (o.isPresent()) {
+            mr.setTitle(o.get().getTitle());
+            mr.setMessage(o.get().getBody());
+        }
         return mr;
     }
 }

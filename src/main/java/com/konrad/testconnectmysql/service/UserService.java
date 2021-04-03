@@ -13,8 +13,21 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Optional<User> getById(Integer id){
-        return userRepository.findById(id);
+    public User getById(Integer id){
+        User user = new User();
+        Optional<User> u = userRepository.findById(id);
+        if (u.isPresent()) { // Optional aprender a usar bien
+          //  user.s
+        }
+        /*
+                MessageResponse mr = new MessageResponse();
+            mr.setTitle(o.get().getTitle());
+            mr.setMessage(o.get().getBody());
+        }
+        return mr;
+         */
+        return user;
+        //return userRepository.findById(id);
     }
 
     public void addNewUser(User user) {

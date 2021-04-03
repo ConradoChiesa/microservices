@@ -1,13 +1,12 @@
 package com.konrad.testconnectmysql.controller;
 
 import com.konrad.testconnectmysql.entitie.Message;
-import com.konrad.testconnectmysql.controller.response.MessageResponse;
+import com.konrad.testconnectmysql.response.MessageResponse;
 import com.konrad.testconnectmysql.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 public class MessageController {
@@ -27,13 +26,7 @@ public class MessageController {
     @GetMapping(path="/message")
     @ResponseBody
     public MessageResponse getMessageById(@RequestParam Integer id) {
-        System.out.println(id);
-        try {
-            return (MessageResponse)messageService.getMessageById(id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+            return messageService.getMessageById(id);
     }
 
 }

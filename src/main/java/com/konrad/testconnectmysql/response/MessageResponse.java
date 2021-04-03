@@ -1,4 +1,4 @@
-package com.konrad.testconnectmysql.controller.response;
+package com.konrad.testconnectmysql.response;
 
 import com.konrad.testconnectmysql.entitie.Message;
 import lombok.Getter;

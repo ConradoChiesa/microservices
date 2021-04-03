@@ -5,12 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.konrad.testconnectmysql.entitie.User;
-import com.konrad.testconnectmysql.repository.UserRepository;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path="/demo")
+@RequestMapping(path="/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -22,4 +21,10 @@ public class UserController {
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() { return userService.findAll(); }
+
+    @GetMapping("/getUserByID")
+    public User getUserById(@RequestParam Integer id){
+        return userService.getById(id);
+
+    }
 }
